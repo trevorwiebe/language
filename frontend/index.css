@@ -62,7 +62,7 @@ button {
     border: none;
     padding: 10px 20px;
     border-radius: var(--border-radius);
-    margin-top: 50px;
+    margin-top: 40px;
     cursor: pointer;
     font-size: 16px;
     display: inline-block;
@@ -76,6 +76,7 @@ button {
     background-color: var(--background);
     color: var(--text-color);
     padding: 10px 20px;
+    margin-bottom: 30px;
     border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 16px;
@@ -95,4 +96,24 @@ button:hover {
 
 #audioFile {
     display: none;
+}
+
+#languageSelect {
+    background-color: var(--background);
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-family: "Source Serif 4", serif;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 40%;
+    display: inline-block;
+}
+#languageSelect:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--secondary-color);
 }

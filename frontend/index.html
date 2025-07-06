@@ -19,7 +19,22 @@
 
         <h3>Audio</h3>
         <input type="file" id="audioFile" accept="audio/*" style="display:none;" />
-        <label for="audioFile" id="audioFileLabel" class="file-btn">Upload Audio</label><span id="audioFileName" style="margin-left:10px;"></span><br>
+        <label for="audioFile" id="audioFileLabel" class="file-btn">Upload Audio</label><span id="audioFileName"></span><br>
+
+
+        <h3>Output Language</h3>
+        <select id="languageSelect">
+          <option value="English">English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Italian">Italian</option>
+          <option value="Portuguese">Portuguese</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+          <option value="Russian">Russian</option>
+        </select><br>
         <button id="submitBtn">Summarize</button>
         <button id="conversation">Conversation</button>
       </div>
