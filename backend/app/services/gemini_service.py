@@ -95,7 +95,7 @@ class GeminiContentGenerator:
         5. Text should only include spoken dialogue, no narration or descriptions
         6. Text should only incude the target language, no other languages
         
-        Format:
+        Format: (The output should always be structured as follows using Person A/B labels.  Because there is a script that expects this.)
         CONVERSATION:
         Person A: [dialogue]
         Person B: [dialogue]

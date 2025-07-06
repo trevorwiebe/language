@@ -109,7 +109,7 @@ button:hover {
     display: none;
 }
 
-#targetLanguage {
+.dropDown{
     background-color: var(--background);
     color: var(--text-color);
     border: none;
@@ -124,7 +124,8 @@ button:hover {
     width: 40%;
     display: inline-block;
 }
-#targetLanguage:focus {
+
+.dropDown:focus {
     outline: none;
-    box-shadow: 0 0 0 1px var(--secondary-color);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
