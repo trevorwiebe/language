@@ -76,7 +76,7 @@ class GeminiContentGenerator:
     async def generate_conversation(self, scenario: str, target_language: str, 
                                 source_language: str = "English",
                                 level: str = "intermediate", 
-                                num_exchanges: int = 6) -> Dict[str, any]:
+                                num_exchanges: int = 15) -> Dict[str, any]:
         """Generate realistic conversations for language practice"""
         
         prompt = f"""
@@ -92,6 +92,8 @@ class GeminiContentGenerator:
         2. Use {level}-appropriate vocabulary and grammar
         3. Include common expressions and cultural elements
         4. Each person should speak {num_exchanges} times
+        5. Text should only include spoken dialogue, no narration or descriptions
+        6. Text should only incude the target language, no other languages
         
         Format:
         CONVERSATION:
@@ -108,8 +110,8 @@ class GeminiContentGenerator:
             return {"error": f"Conversation generation failed: {str(e)}"}
 
     def _parse_conversation_response(self, response_text: str, scenario: str, 
-                                language: str, level: str) -> Dict[str, any]:
-        """Parse conversation response into structured format"""
+                                    language: str, level: str) -> Dict[str, any]:
+        """Parse conversation response into structured format with only spoken text per line"""
         result = {
             "scenario": scenario,
             "language": language,
@@ -130,15 +132,13 @@ class GeminiContentGenerator:
             elif current_section:
                 if current_section == "conversation":
                     if line.startswith("Person A:"):
-                        result["conversation"].append({
-                            "speaker": "A",
-                            "text": line[9:].strip()
-                        })
+                        spoken = line[len("Person A:"):].strip()
+                        if spoken:
+                            result["conversation"].append(spoken)
                     elif line.startswith("Person B:"):
-                        result["conversation"].append({
-                            "speaker": "B",
-                            "text": line[9:].strip()
-                        })
+                        spoken = line[len("Person B:"):].strip()
+                        if spoken:
+                            result["conversation"].append(spoken)
         
         return result
 
