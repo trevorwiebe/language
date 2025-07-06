@@ -1,7 +1,6 @@
 # app/services/gemini_service.py
 import google.generativeai as genai
 from typing import Dict, List, Optional
-import asyncio
 
 class GeminiContentGenerator:
     def __init__(self, api_key: str):
@@ -11,7 +10,8 @@ class GeminiContentGenerator:
     
     async def generate_text_summary(self, text: str, target_language: str, 
                                    source_language: str = "auto",
-                                   level: str = "intermediate") -> Dict[str, str]:
+                                   level: str = "intermediate",
+                                   length: str = "") -> Dict[str, str]:
         """Generate text summary in target language for language learners"""
         
         prompt = f"""
@@ -20,10 +20,12 @@ class GeminiContentGenerator:
         Source language: {source_language}
         Target language: {target_language}
         Learner level: {level}
+        Length of output: {length}
         
         Requirements:
         1. Create a summary that captures the main points
         2. Use vocabulary appropriate for {level} learners
+        3. The output should be about {length} long
         
         Text to summarize:
         {text}
@@ -33,8 +35,6 @@ class GeminiContentGenerator:
         [Summary in {target_language}]
         
         """
-
-        print(prompt)
         
         try:
             response = await self.flash_model.generate_content_async(prompt)
@@ -73,25 +73,29 @@ class GeminiContentGenerator:
         return sections
     
 
-    async def generate_conversation(self, scenario: str, target_language: str, 
-                                source_language: str = "English",
+    async def generate_conversation(self, 
+                                scenario: str,
+                                target_language: str, 
+                                source_language: str = "auto",
                                 level: str = "intermediate", 
-                                num_exchanges: int = 15) -> Dict[str, any]:
+                                length: str = ""
+    ) -> Dict[str, any]:
         """Generate realistic conversations for language practice"""
         
         prompt = f"""
         Create a natural conversation in {target_language} between two people.
         
         Scenario: {scenario}
+        Source language: {source_language}
         Target language: {target_language}
         Learner level: {level}
-        Number of exchanges: {num_exchanges}
+        Length of output: {length}
         
         Requirements:
         1. Make the conversation realistic and practical
         2. Use {level}-appropriate vocabulary and grammar
         3. Include common expressions and cultural elements
-        4. Each person should speak {num_exchanges} times
+        4. The conversation should be about {length} long
         5. Text should only include spoken dialogue, no narration or descriptions
         6. Text should only incude the target language, no other languages
         
@@ -101,6 +105,8 @@ class GeminiContentGenerator:
         Person B: [dialogue]
         
         """
+
+        print(prompt)  # Debugging line to check the prompt structure
         
         try:
             # Use Pro model for better conversation quality

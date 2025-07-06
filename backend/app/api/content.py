@@ -17,13 +17,14 @@ class TextSummaryRequest(BaseModel):
     target_language: str
     source_language: Optional[str] = "auto"
     level: Optional[str] = "intermediate"
+    length: Optional[str] = "about 200 words"
 
 class ConversationRequest(BaseModel):
     scenario: str
     target_language: str
     source_language: Optional[str] = "English"
     level: Optional[str] = "intermediate"
-    num_exchanges: Optional[int] = 6
+    length: Optional[str] = "about 200 words"
 
 @router.post("/text-summary")
 async def create_text_summary(request: Request, summary_req: TextSummaryRequest):
@@ -36,13 +37,14 @@ async def create_text_summary(request: Request, summary_req: TextSummaryRequest)
             text=summary_req.text,
             target_language=summary_req.target_language,
             source_language=summary_req.source_language,
-            level=summary_req.level
+            level=summary_req.level,
+            length=summary_req.length
         )
         
         # Save to history
         db.save_content_history(user_id, {
             "content_type": "text_summary",
-            "input_text": summary_req.text[:500],  # Save first 500 chars
+            "input_text": summary_req.text[:500],
             "input_language": summary_req.source_language,
             "output_language": summary_req.target_language,
             "generated_content": str(result)
@@ -66,7 +68,7 @@ async def create_conversation(request: Request, conv_req: ConversationRequest):
             target_language=conv_req.target_language,
             source_language=conv_req.source_language,
             level=conv_req.level,
-            num_exchanges=conv_req.num_exchanges
+            length=conv_req.length
         )
         
         # Save to history

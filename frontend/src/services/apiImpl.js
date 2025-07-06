@@ -5,11 +5,13 @@ document.getElementById('summarize').addEventListener('click', async () => {
     if (!text) return;
     const targetLanguage = document.getElementById('targetLanguage').value;
     const level = document.getElementById('learnerLevel').value;
+    const length = document.getElementById('materialLength').value;
     try {
         const result = await languageLearningAPI.generateTextSummary(
             text,
             targetLanguage,
             {
+                length: length,
                 level: level
             }
         );
@@ -24,18 +26,19 @@ document.getElementById('conversation').addEventListener('click', async (e) => {
     if (!text) return;
     const targetLanguage = document.getElementById('targetLanguage').value;
     const level = document.getElementById('learnerLevel').value;
+    const length = document.getElementById('materialLength').value;
+
     try {
         const result = await languageLearningAPI.generateConversation(
             text, 
             targetLanguage, 
             {
-                level: level,
-                numExchanges: 15
+                sourceLanguage: 'auto',
+                length: length,
+                level: level
             }
         );
-        console.log(result);
         if (Array.isArray(result.conversation)) {
-            // Alternate speaker labels A/B
             const formatted = result.conversation.map((line, idx) => `${idx % 2 === 0 ? 'Person 1' : 'Person 2'}: ${line}`);
             document.getElementById('outputText').innerHTML = formatted.join('<br><br>');
         } else {
@@ -44,6 +47,7 @@ document.getElementById('conversation').addEventListener('click', async (e) => {
     } catch (e) {
         alert('Error: ' + e.message);
     }
+
 });
 
 function getData() {

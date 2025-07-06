@@ -14,7 +14,8 @@ export const languageLearningAPI = {
                 text,
                 target_language: targetLanguage,
                 source_language: options.sourceLanguage || 'auto',
-                level: options.level || 'intermediate'
+                length: options.length || 'about 200 words',
+                level: options.level || 'Intermediate'
             })
         });
         
@@ -27,6 +28,7 @@ export const languageLearningAPI = {
     
     // Generate conversation
     async generateConversation(scenario, targetLanguage, options = {}) {
+
         const response = await fetch(`${API_BASE}/content/conversation`, {
             method: 'POST',
             headers: {
@@ -36,9 +38,9 @@ export const languageLearningAPI = {
             body: JSON.stringify({
                 scenario,
                 target_language: targetLanguage,
-                source_language: options.sourceLanguage || 'English',
-                level: options.level || 'intermediate',
-                num_exchanges: options.numExchanges || 6
+                source_language: options.sourceLanguage || 'auto',
+                length: options.length || 'about 200 words',
+                level: options.level || 'Intermediate'
             })
         });
         
