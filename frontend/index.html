@@ -23,7 +23,7 @@
 
 
         <h3>Output Language</h3>
-        <select id="languageSelect">
+        <select id="targetLanguage">
           <option value="English">English</option>
           <option value="Spanish">Spanish</option>
           <option value="French">French</option>
@@ -35,23 +35,23 @@
           <option value="Korean">Korean</option>
           <option value="Russian">Russian</option>
         </select><br>
+
+        <h3>Generate Material</h3>
         <button id="submitBtn">Summarize</button>
         <button id="conversation">Conversation</button>
       </div>
 
       <div class="side_box">
         <h1>Output</h1>
-        <textarea id="outputText" readonly></textarea>
+        <h3>Text</h3>
+        <p id="outputText"></p>
+        <h3>Audio</h3>
       </div>
 
     </div>
     <script type="module">
       import './src/services/apiImpl.js';
-      // Show selected file name
-      document.getElementById('audioFile').addEventListener('change', function() {
-        const fileName = this.files[0] ? this.files[0].name : '';
-        document.getElementById('audioFileName').textContent = fileName;
-      });
+      import './src/components/helper.js';
     </script>
   </body>
 </html>
