@@ -14,7 +14,12 @@
 
       <div class="side_box">
         <h1>Input</h1>
+        <h3>Text</h3>
         <textarea id="inputText"></textarea>
+
+        <h3>Audio</h3>
+        <input type="file" id="audioFile" accept="audio/*" style="display:none;" />
+        <label for="audioFile" id="audioFileLabel" class="file-btn">Upload Audio</label><span id="audioFileName" style="margin-left:10px;"></span><br>
         <button id="submitBtn">Summarize</button>
         <button id="conversation">Conversation</button>
       </div>
@@ -27,6 +32,11 @@
     </div>
     <script type="module">
       import './src/services/apiImpl.js';
+      // Show selected file name
+      document.getElementById('audioFile').addEventListener('change', function() {
+        const fileName = this.files[0] ? this.files[0].name : '';
+        document.getElementById('audioFileName').textContent = fileName;
+      });
     </script>
   </body>
 </html>

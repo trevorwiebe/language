@@ -62,7 +62,37 @@ button {
     border: none;
     padding: 10px 20px;
     border-radius: var(--border-radius);
-    margin-top: 20px;
+    margin-top: 50px;
     cursor: pointer;
     font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.file-btn{
+    font-family: "Source Serif 4", serif;
+    background-color: var(--background);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.file-btn:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+#audioFile {
+    display: none;
 }
