@@ -13,7 +13,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 
 document.getElementById('conversation').addEventListener('click', async (e) => {
     const text = getData();
-    if (!text.value) return;
+    if (!text) return;
     try {
         const result = await languageLearningAPI.generateConversation(text, 'Spanish');
         document.getElementById('outputText').value = result.summary || JSON.stringify(result);

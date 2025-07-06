@@ -1,5 +1,13 @@
+:root {
+    --background: #fefae0;
+    --text-color: #3b3b3b;
+    --primary-color: #606c38;
+    --secondary-color: #283618;
+    --border-radius: 10px;
+}
+
 html, body {
-    background-color: #fefae0;
+    background-color: var(--background);
     height: 95%;
     font-family: "Source Serif 4", serif;
 }
@@ -12,17 +20,49 @@ html, body {
     justify-content: space-evenly;
 }
 
+h1 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: var(--text-color);
+}
+
 .side_box {
     width: 45%;
     height: 100%;
     background-color: white;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     padding: 20px;
     box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
 }
 
-#inputText, #outputText{
-    width: 100%; 
-    height: 100px;
-    margin-top: 8px;
+#inputText, #outputText {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    resize: none;
+    outline: none;
+    font-family: "Source Serif 4", serif;
+}
+
+#inputText:focus,
+#outputText:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--secondary-color);
+}
+
+button {
+    font-family: "Source Serif 4", serif;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
 }
